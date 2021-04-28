@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using StringCalculatorKata;
+using System;
 
 namespace StringCalculatorKata.Test
 {
@@ -52,6 +53,15 @@ namespace StringCalculatorKata.Test
             string numbers, int expected)
         {
             Assert.AreEqual(expected, StringCalculator.Add(numbers));
+        }
+
+        [Test]
+        public void Add_StringWithNegativeNumberAsParam_ThrowsException()
+        {
+            string numbers = "1,2,3,-5";
+            Assert.Throws<ArgumentException>(
+                () => StringCalculator.Add(numbers),
+                "negatives not allowed: -5");
         }
     }
 }
