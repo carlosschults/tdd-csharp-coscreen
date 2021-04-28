@@ -28,5 +28,15 @@ namespace StringCalculatorKata.Test
         {
             Assert.AreEqual(14, StringCalculator.Add("2,8,4"));
         }
+
+        [TestCase("1,2,3", 6)]
+        [TestCase("1,0,0,0", 1)]
+        [TestCase("7,3,8,2,5", 25)]
+        [TestCase("28, 4, 10,0,0,0,7", 49)]
+        [TestCase("1,2,3,4,5,6,7,8,9,10", 55)]
+        public void Add_StringWithDifferentAmountofNumbers_ReturnsTheirSum(string numbers, int result)
+        {
+            Assert.AreEqual(result, StringCalculator.Add(numbers));
+        }
     }
 }
