@@ -16,5 +16,11 @@ namespace StringCalculatorKata.Test
         {
             Assert.AreEqual(5, StringCalculator.Add("5"));
         }
+
+        [Test]
+        public void Add_StringWithTwoNumbersAsParam_ReturnsTheirSum()
+        {
+            Assert.AreEqual(10, StringCalculator.Add("2,8"));
+        }
     }
 }
