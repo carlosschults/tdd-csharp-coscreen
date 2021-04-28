@@ -9,10 +9,9 @@ namespace StringCalculatorKata
             if (numbers.Contains(','))
                 return 10;
 
-            if (numbers.Length > 0)
-                return 5;
-
-            return 0;
-        }    
+            return int.Parse(numbers == string.Empty
+                ? "0"
+                : numbers);
+        }
     }
 }
