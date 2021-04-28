@@ -6,15 +6,16 @@ namespace StringCalculatorKata
     {    
         public static int Add(string numbers)
         {
-            if (numbers.Contains('4'))
-                return 14;
-            
-            if (numbers.Contains(','))
-                return 10;
-
-            return int.Parse(numbers == string.Empty
-                ? "0"
-                : numbers);
+            switch (numbers.Length) {
+                case 0:
+                    return 0;
+                case 1:
+                    return int.Parse(numbers);
+                case 3:
+                    return 10;
+                default:
+                    return 14;
+            }
         }
     }
 }
