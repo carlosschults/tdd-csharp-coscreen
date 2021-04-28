@@ -45,12 +45,12 @@ namespace StringCalculatorKata.Test
             Assert.AreEqual(14, StringCalculator.Add("2\n8,4"));
         }
 
-        [Test]
-        public void Add_SyntaxSupportingDifferentDelimiters_AcceptsTheDifferentDelimiter()
+        [TestCase("//$\n1$2$3", 6)]
+        [TestCase("//@\n2@3@4@9", 18)]
+        [TestCase("//#\n17#28#3", 48)]
+        public void Add_SyntaxSupportingDifferentDelimiters_AcceptsTheDifferentDelimiter(
+            string numbers, int expected)
         {
-            string numbers = "//$\n1$2$3";
-            var expected = 6;
-
             Assert.AreEqual(expected, StringCalculator.Add(numbers));
         }
     }
