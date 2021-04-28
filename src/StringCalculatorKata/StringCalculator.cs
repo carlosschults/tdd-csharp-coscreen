@@ -32,9 +32,12 @@ namespace StringCalculatorKata
 
         private static int ParseOrZero(string candidate)
         {
-            return int.TryParse(candidate, out int result)
-                ? result
-                : 0;
+            bool failure =  !int.TryParse(candidate, out int result);
+
+            if (failure || result > 1000)
+                return 0;
+                
+            return result;
         }
     }
 }
