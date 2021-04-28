@@ -6,7 +6,7 @@ namespace StringCalculatorKata
     {    
         public static int Add(string numbers)
         {
-            string[] parts = numbers.Split(',');
+            string[] parts = numbers.Split(new char[]{',', '\n'});
             var result = 0;
             
             foreach (string part in parts)
