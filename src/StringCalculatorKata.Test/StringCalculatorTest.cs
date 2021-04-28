@@ -10,5 +10,11 @@ namespace StringCalculatorKata.Test
         {
             Assert.AreEqual(0, StringCalculator.Add(""));
         }
+
+        [Test]
+        public void Add_StringWithSingleNumberAsParam_ReturnsTheNumber()
+        {
+            Assert.AreEqual(5, StringCalculator.Add("5"));
+        }
     }
 }
