@@ -6,7 +6,7 @@ namespace StringCalculatorKata
     {    
         public static int Add(string numbers)
         {
-            return int.MinValue;
+            return 0;
         }    
     }
 }
