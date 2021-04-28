@@ -19,16 +19,22 @@ namespace StringCalculatorKata
             
             foreach (string part in parts)
             {
-                if (int.TryParse(part, out int integer))
-                {
-                    if (integer < 0)
-                        throw new ArgumentException($"negatives not allowed: {integer}");
-                        
-                    result += integer;
-                }
+                var number = ParseOrZero(part);
+
+                if (number < 0)
+                    throw new ArgumentException($"negatives not allowed: {number}");
+
+                result += number;                
             }
 
             return result;
+        }
+
+        private static int ParseOrZero(string candidate)
+        {
+            return int.TryParse(candidate, out int result)
+                ? result
+                : 0;
         }
     }
 }
