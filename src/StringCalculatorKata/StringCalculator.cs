@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StringCalculatorKata
 {
@@ -14,20 +15,10 @@ namespace StringCalculatorKata
                 numbers = numbers.Split('\n')[1];
             }
 
-            string[] parts = numbers.Split(delimiters.ToArray());
-            var result = 0;
-            
-            foreach (string part in parts)
-            {
-                var number = ParseOrZero(part);
-
-                if (number < 0)
-                    throw new ArgumentException($"negatives not allowed: {number}");
-
-                result += number;                
-            }
-
-            return result;
+            return numbers
+                    .Split(delimiters.ToArray())
+                    .Select(ParseOrZero)
+                    .Sum();
         }
 
         private static int ParseOrZero(string candidate)
@@ -36,7 +27,10 @@ namespace StringCalculatorKata
 
             if (failure || result > 1000)
                 return 0;
-                
+
+            if (result < 0)
+                throw new ArgumentException($"negatives not allowed: {result}");
+
             return result;
         }
     }
