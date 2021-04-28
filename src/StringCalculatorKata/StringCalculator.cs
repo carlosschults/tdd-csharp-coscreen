@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StringCalculatorKata
 {
@@ -6,7 +7,14 @@ namespace StringCalculatorKata
     {    
         public static int Add(string numbers)
         {
-            string[] parts = numbers.Split(new char[]{',', '\n'});
+            var delimiters = new List<char>() {',', '\n'};
+            if (numbers.StartsWith('/'))
+            {
+                delimiters.Add(numbers[2]);
+                numbers = numbers.Split('\n')[1];
+            }
+
+            string[] parts = numbers.Split(delimiters.ToArray());
             var result = 0;
             
             foreach (string part in parts)
