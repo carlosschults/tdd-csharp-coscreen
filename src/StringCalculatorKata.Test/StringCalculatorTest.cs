@@ -63,5 +63,17 @@ namespace StringCalculatorKata.Test
                 () => StringCalculator.Add(numbers),
                 "negatives not allowed: -5");
         }
+
+        [TestCase("1001, 1", 1)]
+        [TestCase("1000, 1", 1001)]
+        [TestCase("999, 1", 1000)]
+        [TestCase("1,2,3,2021", 6)]
+        public void Add_StringWithNumbersLargerThan100_ReturnsTheSumIgnoringNumbersLargerThan1000(
+            string numbers,
+            int expected
+        )
+        {
+            Assert.AreEqual(expected, StringCalculator.Add(numbers));
+        }
     }
 }
