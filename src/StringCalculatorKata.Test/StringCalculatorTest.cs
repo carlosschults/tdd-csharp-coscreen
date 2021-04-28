@@ -38,5 +38,11 @@ namespace StringCalculatorKata.Test
         {
             Assert.AreEqual(result, StringCalculator.Add(numbers));
         }
+
+        [Test]
+        public void Add_StringWithNewLineAsDelimiter_ReturnsTheSumOfTheNumbers()
+        {
+            Assert.AreEqual(14, StringCalculator.Add("2\n8,4"));
+        }
     }
 }
