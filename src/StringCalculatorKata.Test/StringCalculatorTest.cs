@@ -81,5 +81,11 @@ namespace StringCalculatorKata.Test
         {
             Assert.AreEqual(6, StringCalculator.Add("//[***]\n1***2***3"));
         }
+
+        [Test]
+        public void Add_StringWithMultipleDelimiters()
+        {
+            Assert.AreEqual(23, StringCalculator.Add("//[#][&]\n5#8&10"));
+        }
     }
 }
