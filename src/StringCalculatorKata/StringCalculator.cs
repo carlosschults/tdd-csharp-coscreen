@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace StringCalculatorKata
 {
@@ -24,14 +25,19 @@ namespace StringCalculatorKata
                 return (delimiters.ToArray(), numbers);
 
             var parts = numbers.Split('\n');
-            var candidateDelimiters = parts[0]
-                .Replace("/", "")
-                .Replace("[", "")
-                .Replace("]", "");
-
             numbers = parts[1];
+            var candidateDelimiters = parts[0]
+                .Replace("/", "");
+            
+            if (candidateDelimiters.Contains("["))
+            {
+                var matches = Regex.Matches(candidateDelimiters, "[\\[!@#$%¨&*\\]+]{1}");
+                foreach (Match match in matches)
+                    delimiters.Add(match.Value);
+            }
+            
             delimiters.Add(candidateDelimiters);
-           
+        
             return (delimiters.ToArray(), numbers);
         }
 
