@@ -8,17 +8,31 @@ namespace StringCalculatorKata
     {    
         public static int Add(string numbers)
         {
-            var delimiters = new List<char>() {',', '\n'};
-            if (numbers.StartsWith('/'))
-            {
-                delimiters.Add(numbers[2]);
-                numbers = numbers.Split('\n')[1];
-            }
+            var (delimiters, rest) = ExtractDelimitersAndNumbers(numbers);
 
-            return numbers
-                    .Split(delimiters.ToArray())
+            return rest
+                    .Split(delimiters, StringSplitOptions.None)
                     .Select(ParseOrZero)
                     .Sum();
+        }
+
+        private static (string[], string) ExtractDelimitersAndNumbers(string numbers)
+        {
+            var delimiters = new List<string>() {",", "\n"};
+            
+            if (!numbers.StartsWith("//"))
+                return (delimiters.ToArray(), numbers);
+
+            var parts = numbers.Split('\n');
+            var candidateDelimiters = parts[0]
+                .Replace("/", "")
+                .Replace("[", "")
+                .Replace("]", "");
+
+            numbers = parts[1];
+            delimiters.Add(candidateDelimiters);
+           
+            return (delimiters.ToArray(), numbers);
         }
 
         private static int ParseOrZero(string candidate)
